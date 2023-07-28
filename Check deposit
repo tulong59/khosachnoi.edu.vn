@@ -1,0 +1,6 @@
+select date_trunc('day', block_time) as day, count(distinct "from") as users, 
+count(*) as transactions
+from ethereum.transactions
+where "to"=0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe
+and substring(cast(data as varchar),1,10)='0xcd586579' --bridge asset
+group by 1
